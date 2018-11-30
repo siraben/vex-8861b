@@ -28,6 +28,6 @@
  */
 void autonomous() {
   for(;;) {
-    move_base(127, 127);
+    move_base(-127, 127);
   }
 }
