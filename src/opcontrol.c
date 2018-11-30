@@ -4,6 +4,10 @@
 void operatorControl() {
   int data_test = 1;
 
+  TaskHandle firstTask = taskCreate(play_boot_sound, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
+
+  taskDelete(firstTask);
+
 
   printf("--------- BOOT SUCCESS ---------\n");
 
@@ -15,15 +19,14 @@ void operatorControl() {
                  right_group,
                  extra_right,
                  extra_left,
-                 joysticks);
+                 joysticks,
+                 1);
     printf("------- PLAYING BACK DATA ------\n");
     printf("--------- IN 3 SECONDS ---------\n");
-    // load_file("data.bin");
-    size_t *z = malloc(sizeof(size_t));
-    char * message = base64_encode(rec, 300*140, z);
-    for(int x = 0; x < *z; x++) {
-      putchar(message[x]);
-    }
+    /* load_file("data.bin"); */
+    /* for(int x = 0; x < 300*140; x++) { */
+    /*   putchar(message[x]); */
+    /* } */
     delay(3000);
     for (int i = 0; i < DATA_SIZE; i++) {
       printf("%3d: %4d, %4d, %4d, %4d, %d%d%d%d %d%d %d%d %d%d%d%d\n",
@@ -49,9 +52,12 @@ void operatorControl() {
       extra_right = &rec[i].extra_right;
       extra_left = &rec[i].extra_left;
       joysticks = &rec[i].joysticks;
-      move_arm(right_group->u, right_group->d, 127);
-      move_base(-(joysticks->three), joysticks->two);
-    
+
+      move_bot(left_group,
+               right_group,
+               extra_right,
+               extra_left,
+               joysticks);
       delay(SAMPLE_INTERVAL);
     }
   }
@@ -59,8 +65,11 @@ void operatorControl() {
   printf("------- PLAYBACK FINISHED ------\n");
   printf("------- SWTCHING TO MANUAL -----\n");
   for (;;) {
-    move_arm(right_group->u, right_group->d, 127);
-    move_base(-(joysticks->three), joysticks->two);
+    move_bot(left_group,
+             right_group,
+             extra_right,
+             extra_left,
+             joysticks);    
 
     update_group(left_group);
     update_group(right_group);

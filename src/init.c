@@ -42,5 +42,4 @@ void initialize() {
   extra_right = new_controller_group(6, button);
   extra_left = new_controller_group(5, button);
   joysticks = new_controller_group(0, joystick);
-
 }

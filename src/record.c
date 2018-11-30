@@ -6,13 +6,17 @@ void collect_data(const char *filename,
                   controller_group *right_group,
                   controller_group *extra_right,
                   controller_group *extra_left,
-                  controller_group *joysticks) {
-  /* PROS_FILE *file; */
-  /* file = fopen(filename, "w"); */
-  /* if (!file) { */
-  /*   printf("COLLECT_DATA: Invalid file.\n"); */
-  /*   return; */
-  /* } */
+                  controller_group *joysticks,
+                  int overwrite) {
+  PROS_FILE *file;
+
+  file = fopen(filename, "r");
+  
+  if (!file && !overwrite) {
+    printf("COLLECT_DATA: File already exists.\n");
+    return;
+  }
+  file = fopen(filename, "w");
   for (int i = 0; i < DATA_SIZE; i++) {
 
     rec[i].extra_left = *extra_left;
@@ -39,8 +43,11 @@ void collect_data(const char *filename,
            right_group->l,
            right_group->d);    
 
-    move_arm(right_group->u, right_group->d, 127);    
-    move_base(-(joysticks->three), joysticks->two);        
+    move_bot(left_group,
+             right_group,
+             extra_right,
+             extra_left,
+             joysticks);
     update_group(left_group);
     update_group(right_group);
     update_group(extra_right);
@@ -64,9 +71,6 @@ int load_file(const char *filename) {
   }
   if (feof(file)) {
     printf("Error reading %s: unexpected end of file\n", filename);
-    return 1;
-  } else {
-    return 1;
   }
-  
+  return 1;
 }
