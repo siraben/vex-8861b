@@ -4,13 +4,7 @@
 void operatorControl() {
   int data_test = 1;
 
-  TaskHandle firstTask = taskCreate(play_boot_sound, TASK_DEFAULT_STACK_SIZE, NULL, TASK_PRIORITY_DEFAULT);
-
-  taskDelete(firstTask);
-
-
   printf("--------- BOOT SUCCESS ---------\n");
-
   printf("--- STARTING DATA COLLECTION ---\n");  
 
   if (data_test) {
