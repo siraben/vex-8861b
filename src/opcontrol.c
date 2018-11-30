@@ -63,24 +63,24 @@ void operatorControl() {
              extra_right,
              extra_left,
              joysticks);    
-    printf("\r%4d, %4d, %4d, %4d, %d%d%d%d %d%d %d%d %d%d%d%d",
-             joysticks->one,
-             joysticks->two,
-             joysticks->three,
-             joysticks->four,
-             left_group->u,
-             left_group->r,
-             left_group->d,
-             left_group->l,
-             extra_right->u,
-             extra_right->d,
-             extra_left->u,
-             extra_left->d,
-             right_group->u,
-             right_group->r,
-             right_group->l,
-             right_group->d);
-    fflush(stdout);
+    /* printf("\r%4d, %4d, %4d, %4d, %d%d%d%d %d%d %d%d %d%d%d%d", */
+    /*          joysticks->one, */
+    /*          joysticks->two, */
+    /*          joysticks->three, */
+    /*          joysticks->four, */
+    /*          left_group->u, */
+    /*          left_group->r, */
+    /*          left_group->d, */
+    /*          left_group->l, */
+    /*          extra_right->u, */
+    /*          extra_right->d, */
+    /*          extra_left->u, */
+    /*          extra_left->d, */
+    /*          right_group->u, */
+    /*          right_group->r, */
+    /*          right_group->l, */
+    /*          right_group->d); */
+    /* fflush(stdout); */
     update_group(left_group);
     update_group(right_group);
     update_group(extra_right);

@@ -55,8 +55,7 @@ void move_bot(controller_group *left_group,
               controller_group *joysticks) {
   move_arm(extra_right->u, extra_right->d, 127);
   move_base(-(joysticks->three), joysticks->two);
-  move_shooter(left_group->u, left_group->d, 127);
-  move_intake(left_group->l, left_group->r, 127);  
-  // play_notes(left_group, right_group);
-  
+  // move_shooter(left_group->u, left_group->d, 127);
+  // move_intake(left_group->l, left_group->r, 127);
+    
 }
