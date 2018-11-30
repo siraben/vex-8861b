@@ -21,8 +21,8 @@ void move_arm(int up, int down, int power) {
 }
 
 void move_base(int left, int right) {
-  motorSet(RIGHT_BASE, right);
-  motorSet(LEFT_BASE, left);
+  motorSet(RIGHT_BASE, -right);
+  motorSet(LEFT_BASE, -left);
 }
 
 void move_shooter(int forward, int reverse, int power) {
